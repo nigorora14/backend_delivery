@@ -21,6 +21,20 @@ module.exports = {
             })
         }
     },
+    async findById(req,res, next){
+        try {
+            const id = await req.params.id
+            const data= await User.findByUserId(id)
+            console.log(`Usuarios: ${data}`)
+            return res.status('201').json(data)
+        } catch (error) {
+            console.log(error)
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener usuario por id.'
+            })
+        }
+    },
     async register(req, res, next){
         try {
             const user= req.body
@@ -54,7 +68,6 @@ module.exports = {
                     user.image=url
                 }
             }
-            console.log(user)
             const data = await User.create(user)
             await Rol.create(data.id, 1)//rol por defecto (cliente)
 
@@ -68,6 +81,33 @@ module.exports = {
             return res.status(501),json({
                 success: false,
                 message: 'Error al registrar al usuario.',
+                error: error
+            })
+        }
+    },
+    async update(req, res, next){
+        try {
+            const user= JSON.parse(req.body.user)
+            const files = req.files
+            if (files.length>0) {
+                const pathImage = `image_${Date.now()}` //nombre del archivo
+                const url= await storage(files[0], pathImage)
+
+                if (url != undefined && url != null) {
+                    user.image=url
+                }
+            }
+            await User.update(user)
+
+            return res.status(201).json({
+            success: true,
+            message: 'Los datos se actualizaron correctamente.'
+        })
+        } catch (error) {
+            console.log(`Error: ${error}`)
+            return res.status(501),json({
+                success: false,
+                message: 'Error al actualizar al usuario.',
                 error: error
             })
         }

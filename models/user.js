@@ -40,6 +40,24 @@ group by u.id
     `
     return db.oneOrNone(sql, email);
 }
+User.findByUserId= (id) => {
+    const sql= `
+    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN,
+    json_agg(
+        json_build_object(
+                'id', r.id,
+             'name', r.name,
+             'image', r.image,
+             'route', r.route
+        )
+    ) as roles		
+FROM USERS as u inner join user_has_roles as uhr on u.id=uhr.id_user
+                 inner join roles r on uhr.id_rol=r.id 
+WHERE u.ID = $1
+group by u.id
+    `
+    return db.oneOrNone(sql, id);
+}
 User.findById = (id, callback) => {
     const sql= `
         SELECT ID, EMAIL, NAME, LASTNAME, IMAGE, PHONE, PASSWORD, SESSION_TOKEN
@@ -55,4 +73,19 @@ User.isPasswordMatched = (userPassword, hash) => {
     }
     return false
 }
+User.update = (user) => {
+    const sql = ` 
+    UPDATE USERS SET NAME = $2, LASTNAME=$3, PHONE=$4, IMAGE= $5, UPDATE_AT=$6
+    WHERE ID=$1 
+    `;
+    return db.none(sql, [
+        user.id,
+        user.name,
+        user.lastname,
+        user.phone,
+        user.image,
+        new Date()
+    ])
+}
+
 module.exports=User
