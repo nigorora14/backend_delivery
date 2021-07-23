@@ -10,6 +10,7 @@ const users = require('./routes/usersRoutes')
 const multer = require('multer')
 const admin = require('firebase-admin')
 const serviceAccount = require('./serviceAccountKey.json')
+const passport = require('passport')
 
 /*
 iniciar firebase
@@ -37,6 +38,9 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use(cors())
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passport')(passport)
 app.disable('x-powered-by')
 app.set('port', port)
 

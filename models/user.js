@@ -87,5 +87,15 @@ User.update = (user) => {
         new Date()
     ])
 }
+User.updateToken = (id, token) => {
+    const sql = ` 
+    UPDATE USERS SET SESSION_TOKEN= $2
+    WHERE ID=$1 
+    `;
+    return db.none(sql, [
+        id,
+        token
+    ])
+}
 
 module.exports=User

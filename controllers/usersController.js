@@ -127,6 +127,7 @@ module.exports = {
             if (User.isPasswordMatched(password, myUser.password)) {
                 const token = jwt.sign({id: myUser.id, email: myUser.email}, keys.secretOrKey,{
                     // expiresIn: (60*60*24)//1 hora
+                    expiresIn: (10)//1 hora
                 })
                 const data = {
                     id: myUser.id,
@@ -138,9 +139,10 @@ module.exports = {
                     session_token: `JWT ${token}`,
                     roles: myUser.roles
                 }
+                await User.updateToken(myUser.id, `JWT ${token}`)
                 return res.status(201).json({
                     success: true,
-                    message:'Bienvenido...',
+                    message:`Bienvenido ${myUser.name}`,
                     data: data
                 })
             }
@@ -156,6 +158,23 @@ module.exports = {
             return res.status(501).json({
                 success: false,
                 message: 'Error al realizar login.',
+                error: error
+            })
+        }    
+    },
+    async logout(req, res, next){
+        try {
+            const id = req.body.id
+            await User.updateToken(id, null)
+            return res.status(201).json({
+                success: true,
+                message: 'LA SESION HA EXPIRADO.'
+            })
+        } catch (error) {
+            console.log(`Error: ${error}`)
+            return res.status(501).json({
+                success: false,
+                message: 'Error al cerrar sesion.',
                 error: error
             })
         }    
