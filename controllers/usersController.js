@@ -11,7 +11,7 @@ module.exports = {
     async getAll(req,res, next){
         try {
             const data= await User.getAll()
-            console.log(`Usuarios: ${data}`)
+            //console.log(`Usuarios: ${data}`)
             return res.status('201').json(data)
         } catch (error) {
             console.log(error)
@@ -25,7 +25,7 @@ module.exports = {
         try {
             const id = await req.params.id
             const data= await User.findByUserId(id)
-            console.log(`Usuarios: ${data}`)
+            //console.log(`Usuarios: ${data}`)
             return res.status('201').json(data)
         } catch (error) {
             console.log(error)
@@ -126,8 +126,8 @@ module.exports = {
             }
             if (User.isPasswordMatched(password, myUser.password)) {
                 const token = jwt.sign({id: myUser.id, email: myUser.email}, keys.secretOrKey,{
-                    // expiresIn: (60*60*24)//1 hora
-                    expiresIn: (10)//1 hora
+                    //expiresIn: (60*60*24)//1 hora
+                    expiresIn: (60*5)//1 hora
                 })
                 const data = {
                     id: myUser.id,

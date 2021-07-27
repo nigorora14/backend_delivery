@@ -49,7 +49,7 @@ llamando a las rutas
 */
 users(app, upload)
 
-server.listen(3000,'192.168.0.106' || 'localhost', function(){
+server.listen(3000,'192.168.0.102' || 'localhost', function(){
     console.log('App '+process.pid+' iniciada...')
     console.log('App '+port+' iniciada...')
 })
