@@ -7,6 +7,7 @@ const http = require('http')
 const logger= require('morgan')
 const cors= require('cors')
 const users = require('./routes/usersRoutes')
+const categories = require('./routes/categoriesRoutes')
 const multer = require('multer')
 const admin = require('firebase-admin')
 const serviceAccount = require('./serviceAccountKey.json')
@@ -48,6 +49,7 @@ app.set('port', port)
 llamando a las rutas
 */
 users(app, upload)
+categories(app)
 
 server.listen(3000,'192.168.0.102' || 'localhost', function(){
     console.log('App '+process.pid+' iniciada...')

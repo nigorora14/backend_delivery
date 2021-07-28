@@ -49,3 +49,12 @@ insert into roles (
 ) values (
 	'REPARTIDOR','delivery/orders/list','2021-07-15','2021-07-15'
 );
+
+drop table IF exists CATEGORIES cascade;
+create table CATEGORIES (
+	ID bigserial primary key,
+	NAME varchar(100) not null unique,
+	description varchar(255) not null,
+	create_at timestamp(0) not null,
+	update_at timestamp(0) not null
+);
