@@ -58,3 +58,18 @@ create table CATEGORIES (
 	create_at timestamp(0) not null,
 	update_at timestamp(0) not null
 );
+
+drop table IF exists products cascade;
+create table products (
+	ID bigserial primary key,
+	NAME varchar(180) not null unique,
+	description varchar(255) not null,
+	price decimal default 0,
+	image1 varchar(255) not null,
+	image2 varchar(255) null,
+	image3 varchar(255) null,
+	id_category bigint not null,
+	create_at timestamp(0) not null,
+	update_at timestamp(0) not null,
+	foreign key(id_category) references CATEGORIES(id) on update cascade on delete cascade
+);

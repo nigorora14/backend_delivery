@@ -6,12 +6,14 @@ const express = require('express')
 const http = require('http')
 const logger= require('morgan')
 const cors= require('cors')
-const users = require('./routes/usersRoutes')
-const categories = require('./routes/categoriesRoutes')
 const multer = require('multer')
 const admin = require('firebase-admin')
 const serviceAccount = require('./serviceAccountKey.json')
 const passport = require('passport')
+
+const users = require('./routes/usersRoutes')
+const categories = require('./routes/categoriesRoutes')
+const products = require('./routes/productsRoutes')
 
 /*
 iniciar firebase
@@ -50,6 +52,7 @@ llamando a las rutas
 */
 users(app, upload)
 categories(app)
+products(app, upload)
 
 server.listen(3000,'192.168.0.102' || 'localhost', function(){
     console.log('App '+process.pid+' iniciada...')
