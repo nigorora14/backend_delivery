@@ -2,6 +2,14 @@ const db = require('../config/config')
 
 const Category= {}
 
+Category.getAll = () => {
+    const sql = `
+        SELECT ID, NAME, DESCRIPTION 
+          FROM CATEGORIES
+         ORDER BY NAME
+    `;
+    return db.manyOrNone(sql);
+}
 Category.create = (category) => {
     const sql=`
         INSERT INTO CATEGORIES (NAME, DESCRIPTION, CREATE_AT, UPDATE_AT)
