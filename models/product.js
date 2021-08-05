@@ -2,12 +2,11 @@ const db = require('../config/config')
 
 const Product = {}
 
-Product.create = () => {
+Product.create = (product) => {
     const sql=`
-    INSERT INTO public.products(
+    INSERT INTO products(
         name, description, price, image1, image2, image3, id_category, create_at, update_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-        returning id
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING ID
     `;
     return db.oneOrNone(sql, [
         product.name,
@@ -27,7 +26,7 @@ Product.update = (product) => {
     UPDATE PRODUCTS SET NAME=$2, DESCRIPTION = $3, PRICE=$4, IMAGE1= $5, IMAGE2= $6, IMAGE3= $7, ID_CATEGORY=$8, UPDATE_AT=$9
     WHERE ID=$1
     `;
-    return db.one(sql, [
+    return db.none(sql, [
         product.id,
         product.name,
         product.description,

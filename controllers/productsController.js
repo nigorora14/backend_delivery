@@ -1,12 +1,16 @@
 const Product = require('../models/product')
 const storage = require('../utils/cloud_storage')
+const asyncForEach = require('../utils/async_foreach')
 
 module.exports = {
     async create(req, res, next) {
         let product = JSON.parse(req.body.product)
+        
+        console.log(`product: ${JSON.stringify(product)}`)
+        
         const files = req.files;
-        let insert = 0
-
+        let inserts = 0
+        
         if (files.length === 0) {
             return res.status(501).json({
                 message: 'Error al registrar el producto no tiene imagen.',
@@ -15,13 +19,17 @@ module.exports = {
         } else {
             try {
                 const data = await Product.create(product)//almacenando la informacion
+                
                 product.id=data.id
+                
                 const start = async () => {
+                    
                     await asyncForEach(files, async(file) => {
                         const pathImage =`image_${Date.now()}`
+                        
                         const url = await storage(file, pathImage)
-
-                        if(url != undefined && url !== null){
+                        
+                        if(url !== undefined && url !== null){
                             if (inserts==0) { //IMAGE 1
                                 product.image1 = url
                             }
@@ -46,7 +54,7 @@ module.exports = {
             } catch (error) {
                 console.log(`Error: ${error}`)
                 return res.status(501).json({
-                    message: `Error al registrar el roducto ${error}`,
+                    message: `Error al registrar el Producto ${error}`,
                     success: false,
                     error: error
                 })

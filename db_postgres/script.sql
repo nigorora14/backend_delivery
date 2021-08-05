@@ -65,7 +65,7 @@ create table products (
 	NAME varchar(180) not null unique,
 	description varchar(255) not null,
 	price decimal default 0,
-	image1 varchar(255) not null,
+	image1 varchar(255) null,
 	image2 varchar(255) null,
 	image3 varchar(255) null,
 	id_category bigint not null,
