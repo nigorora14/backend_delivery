@@ -2,6 +2,14 @@ const db = require('../config/config')
 
 const Product = {}
 
+Product.findByCategory = (id_category) => {
+    const sql =`
+    SELECT P.ID, P.NAME, P.DESCRIPTION, PRICE, IMAGE1, IMAGE2, IMAGE3, ID_CATEGORY
+      FROM PRODUCTS AS P INNER JOIN CATEGORIES AS C ON P.ID_CATEGORY = C.ID
+     WHERE C.ID=$1
+    `;
+    return db.manyOrNone(sql, id_category);
+}
 Product.create = (product) => {
     const sql=`
     INSERT INTO products(
@@ -20,7 +28,6 @@ Product.create = (product) => {
         new Date()
     ])
 }
-
 Product.update = (product) => {
     const sql=`
     UPDATE PRODUCTS SET NAME=$2, DESCRIPTION = $3, PRICE=$4, IMAGE1= $5, IMAGE2= $6, IMAGE3= $7, ID_CATEGORY=$8, UPDATE_AT=$9
@@ -38,5 +45,6 @@ Product.update = (product) => {
         new Date()
     ])
 }
+
 
 module.exports = Product
