@@ -73,3 +73,5 @@ create table products (
 	update_at timestamp(0) not null,
 	foreign key(id_category) references CATEGORIES(id) on update cascade on delete cascade
 );
+
+

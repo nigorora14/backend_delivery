@@ -1,3 +1,7 @@
 postgres
 pass: 14@qweszxC
 port: 5432
+
+google maps - credenciales
+clave - api
+AIzaSyAZRp2da3F5tywWAerSiIGu26X6mCDUsCs
