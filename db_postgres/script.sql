@@ -74,4 +74,15 @@ create table products (
 	foreign key(id_category) references CATEGORIES(id) on update cascade on delete cascade
 );
 
-
+drop table IF exists address cascade;
+CREATE TABLE ADDRESS(
+	ID bigserial PRIMARY KEY,
+	id_user BIGINT NOT NULL,
+	ADDRESS VARCHAR(255) NOT NULL,
+	NEIGHBORHOOD VARCHAR(255) NOT NULL,
+	LAT DECIMAL default 0,
+	LNG DECIMAL default 0,
+	CREATE_AT timestamp(0) NOT NULL,
+	update_AT timestamp(0) NOT NULL,
+	Foreign key(id_user) references users(id) on update cascade on delete cascade
+);

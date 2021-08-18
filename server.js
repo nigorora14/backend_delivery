@@ -14,7 +14,7 @@ const passport = require('passport')
 const users = require('./routes/usersRoutes')
 const categories = require('./routes/categoriesRoutes')
 const products = require('./routes/productsRoutes')
-
+const address = require('./routes/addressRoutes')
 /*
 iniciar firebase
 */
@@ -52,6 +52,7 @@ llamando a las rutas
 */
 users(app, upload)
 categories(app)
+address(app)
 products(app, upload)
 
 server.listen(3000,'192.168.0.102' || 'localhost', function(){

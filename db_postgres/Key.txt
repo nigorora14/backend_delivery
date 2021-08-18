@@ -4,4 +4,9 @@ port: 5432
 
 google maps - credenciales
 clave - api
+ANDROID
 AIzaSyAZRp2da3F5tywWAerSiIGu26X6mCDUsCs
+
+IOS
+AIzaSyBrn_pPBCBbKLIFcw-ujFfaMFKubzOZ8C0
+
