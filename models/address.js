@@ -2,6 +2,14 @@ const db = require('../config/config')
 
 const Address = {}
 
+Address.findByUser = (id_user) => {
+    const sql = `
+        SELECT ID, ID_USER, ADDRESS, NEIGHBORHOOD, LAT, LNG
+          FROM ADDRESS
+         WHERE ID_USER = $1
+    `;
+    return db.manyOrNone(sql, id_user)
+}
 Address.create = (address) => {
     const sql = `
         INSERT INTO ADDRESS (ID_USER, ADDRESS, NEIGHBORHOOD, LAT, LNG, CREATE_AT, UPDATE_AT)
