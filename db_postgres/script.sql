@@ -86,3 +86,32 @@ CREATE TABLE ADDRESS(
 	update_AT timestamp(0) NOT NULL,
 	Foreign key(id_user) references users(id) on update cascade on delete cascade
 );
+
+drop table IF exists orders cascade;
+CREATE TABLE orders(
+	ID bigserial PRIMARY KEY,
+	id_client bigint not null,
+	id_delivery bigint null,
+	id_address bigint not null,
+	lat decimal default 0,
+	lng decimal default 0,
+	status varchar(90) not null,
+	timestamp bigint not null,
+	create_at timestamp(0) not null,
+	update_at timestamp(0) not null,
+	Foreign key(id_client) references users(id) on update cascade on delete cascade,
+	Foreign key(id_delivery) references users(id) on update cascade on delete cascade,
+	Foreign key(id_address) references address(id) on update cascade on delete cascade
+);
+
+drop table IF exists orders_has_products cascade;
+CREATE TABLE orders_has_products(
+	ID_order bigint not null,
+	id_product bigint not null,
+	quantity bigint not null,
+	create_at timestamp(0) not null,
+	update_at timestamp(0) not null,
+	PRIMARY key(ID_order, id_product),
+	Foreign key(ID_order) references orders(id) on update cascade on delete cascade,
+	Foreign key(id_product) references products(id) on update cascade on delete cascade
+);
