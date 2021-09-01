@@ -3,7 +3,7 @@ const passport = require('passport')
 
 module.exports = (app) => {
     //GET
-    //app.get('/api/address/findByUser/:id_user', passport.authenticate('jwt', {session: false}), AddressController.findByUser)
+    app.get('/api/order/findByStatus/:status', passport.authenticate('jwt', {session: false}), OrdersController.findByStatus)
     //POST
     app.post('/api/order/create', passport.authenticate('jwt', {session: false}), OrdersController.create)
 }
