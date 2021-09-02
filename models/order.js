@@ -6,18 +6,18 @@ Order.findByStatus = (status) => {
     const sql = `
     SELECT O.ID, O.ID_CLIENT, O.ID_ADDRESS, O.ID_DELIVERY, O.STATUS, O.TIMESTAMP,
            JSON_BUILD_OBJECT(
-           'ID', U.ID,
-           'NAME',U.NAME,
-           'LASTNAME',U.LASTNAME,
-           'IMAGE',U.IMAGE
-            ) AS CLIENT,
+           'id', U.ID,
+           'name',U.NAME,
+           'lastname',U.LASTNAME,
+           'image',U.IMAGE
+            ) AS client,
             JSON_BUILD_OBJECT(
-            'ID', A.ID,
-            'ADDRESS',A.ADDRESS,
-            'NEIGHBORHOOD',A.NEIGHBORHOOD,
-            'LAT',A.LAT,
-            'LNG',A.LNG
-            ) AS ADDRESS
+            'id', A.ID,
+            'address',A.ADDRESS,
+            'neighborhood',A.NEIGHBORHOOD,
+            'lat',A.LAT,
+            'lng',A.LNG
+            ) AS address
        FROM ORDERS AS O INNER JOIN USERS AS U ON O.ID_CLIENT = U.ID
             INNER JOIN ADDRESS AS A ON A.ID = O.ID_ADDRESS
       WHERE STATUS=$1
