@@ -5,6 +5,18 @@ const Order = {}
 Order.findByStatus = (status) => {
     const sql = `
     SELECT O.ID, O.ID_CLIENT, O.ID_ADDRESS, O.ID_DELIVERY, O.STATUS, O.TIMESTAMP,
+		   JSON_AGG(
+			   JSON_BUILD_OBJECT(
+			   		'id',p.id,
+				   	'name',p.name,
+				   	'description', p.description,
+				   	'price', p.price,
+				   	'image1', p.image1,
+				   	'image2', p.image2,
+				   	'image3', p.image3,
+				   	'quantity', ohp.quantity
+			   )
+		   ) AS products,
            JSON_BUILD_OBJECT(
            'id', U.ID,
            'name',U.NAME,
@@ -20,7 +32,10 @@ Order.findByStatus = (status) => {
             ) AS address
        FROM ORDERS AS O INNER JOIN USERS AS U ON O.ID_CLIENT = U.ID
             INNER JOIN ADDRESS AS A ON A.ID = O.ID_ADDRESS
+			INNER JOIN ORDERS_HAS_PRODUCTS AS OHP ON OHP.ID_ORDER = O.ID
+			INNER JOIN PRODUCTS AS P ON P.ID = OHP.ID_PRODUCT
       WHERE STATUS=$1
+	  GROUP BY O.ID, U.ID, A.ID
     `;
     return db.manyOrNone(sql, status);
 }

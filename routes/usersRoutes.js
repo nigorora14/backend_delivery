@@ -5,6 +5,7 @@ module.exports = (app, upload) => {
     //traer datos
     app.get('/api/users/getAll',UsersController.getAll)
     app.get('/api/users/findByID/:id', passport.authenticate('jwt', {session:false}), UsersController.findById)
+    app.get('/api/users/findDeliveryMen', passport.authenticate('jwt', {session:false}), UsersController.findByDeliveryMen)
 
     //guardar datos
     //app.post('/api/users/create',upload.array('image',1), UsersController.register)

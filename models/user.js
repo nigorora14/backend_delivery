@@ -40,6 +40,15 @@ group by u.id
     `
     return db.oneOrNone(sql, email);
 }
+User.findByDeliveryMen = () => {
+    const sql= `
+    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN
+    FROM USERS AS U INNER JOIN USER_HAS_ROLES AS UHR ON UHR.ID_USER = U.ID
+                    INNER JOIN ROLES AS R ON R.ID = UHR.ID_ROL
+    WHERE R.ID = 3
+    `;
+    return db.manyOrNone(sql);
+}
 User.findByUserId= (id) => {
     const sql= `
     SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN,

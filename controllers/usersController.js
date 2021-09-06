@@ -6,6 +6,7 @@ const keys = require('../config/keys')
 //const { json } = require('express')
 //const { storage } = require('firebase-admin')
 const storage = require('../utils/cloud_storage')
+const { findByDeliveryMen } = require('../models/user')
 
 module.exports = {
     async getAll(req,res, next){
@@ -32,6 +33,20 @@ module.exports = {
             return res.status(501).json({
                 success: false,
                 message: 'Error al obtener usuario por id.'
+            })
+        }
+    },
+    async findByDeliveryMen(req,res, next){
+        try {
+            
+            const data= await User.findByDeliveryMen()
+            console.log(`Repartidores: ${data}`)
+            return res.status('201').json(data)
+        } catch (error) {
+            console.log(error)
+            return res.status(501).json({
+                success: false,
+                message: 'Error al obtener repartidores.'
             })
         }
     },
