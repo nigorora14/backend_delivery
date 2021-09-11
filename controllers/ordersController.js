@@ -42,5 +42,24 @@ module.exports = {
                 error : error
             })
         }
+    },
+    async updateToDispatched(req, res, next) {
+        try {
+            let order = req.body
+            order.status='DESPACHADO'
+            await Order.update(order)
+            return res.status(201).json({
+                success : true,
+                message : 'La Orden se actualizo correctamente.'
+            })
+
+        } catch (error) {
+            console.log(`Error en actualizar la Order: ${error}`)
+            return res.status(501).json({
+                success : false,
+                message : 'Hubo un error al actualizar la Orden',
+                error : error
+            })
+        }
     }
 }

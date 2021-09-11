@@ -23,6 +23,12 @@ Order.findByStatus = (status) => {
            'lastname',U.LASTNAME,
            'image',U.IMAGE
             ) AS client,
+			JSON_BUILD_OBJECT(
+           'id', U2.ID,
+           'name',U2.NAME,
+           'lastname',U2.LASTNAME,
+           'image',U2.IMAGE
+            ) AS delivery,
             JSON_BUILD_OBJECT(
             'id', A.ID,
             'address',A.ADDRESS,
@@ -31,11 +37,12 @@ Order.findByStatus = (status) => {
             'lng',A.LNG
             ) AS address
        FROM ORDERS AS O INNER JOIN USERS AS U ON O.ID_CLIENT = U.ID
+	   		LEFT JOIN USERS AS U2 ON O.ID_DELIVERY = U2.ID
             INNER JOIN ADDRESS AS A ON A.ID = O.ID_ADDRESS
 			INNER JOIN ORDERS_HAS_PRODUCTS AS OHP ON OHP.ID_ORDER = O.ID
 			INNER JOIN PRODUCTS AS P ON P.ID = OHP.ID_PRODUCT
       WHERE STATUS=$1
-	  GROUP BY O.ID, U.ID, A.ID
+	  GROUP BY O.ID, U.ID, A.ID, U2.ID
     `;
     return db.manyOrNone(sql, status);
 }
@@ -51,6 +58,20 @@ Order.create = (order) => {
         order.status,
         Date.now(),
         new Date(),
+        new Date()
+    ])
+}
+Order.update = (order) => {
+    const sql= `
+    UPDATE ORDERS SET ID_CLIENT= $2, ID_ADDRESS=$3, ID_DELIVERY = $4, STATUS= $5, UPDATE_AT =$6
+     WHERE ID = $1
+    `;
+    return db.none(sql, [
+        order.id,
+        order.id_client,
+        order.id_address,
+        order.id_delivery,
+        order.status,
         new Date()
     ])
 }
