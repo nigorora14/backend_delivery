@@ -21,13 +21,15 @@ Order.findByStatus = (status) => {
            'id', U.ID,
            'name',U.NAME,
            'lastname',U.LASTNAME,
-           'image',U.IMAGE
+           'image',U.IMAGE,
+           'phone', U.phone
             ) AS client,
 			JSON_BUILD_OBJECT(
            'id', U2.ID,
            'name',U2.NAME,
            'lastname',U2.LASTNAME,
-           'image',U2.IMAGE
+           'image',U2.IMAGE,
+           'phone', U2.phone
             ) AS delivery,
             JSON_BUILD_OBJECT(
             'id', A.ID,
@@ -65,13 +67,15 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
            'id', U.ID,
            'name',U.NAME,
            'lastname',U.LASTNAME,
-           'image',U.IMAGE
+           'image',U.IMAGE,
+           'phone', U.phone
             ) AS client,
 			JSON_BUILD_OBJECT(
            'id', U2.ID,
            'name',U2.NAME,
            'lastname',U2.LASTNAME,
-           'image',U2.IMAGE
+           'image',U2.IMAGE,
+           'phone', U2.phone
             ) AS delivery,
             JSON_BUILD_OBJECT(
             'id', A.ID,
