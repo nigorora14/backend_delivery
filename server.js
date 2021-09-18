@@ -4,21 +4,26 @@ let: variables
 */
 const express = require('express')
 const http = require('http')
+const app = express()
+const server = http.createServer(app)
 const logger= require('morgan')
 const cors= require('cors')
 const multer = require('multer')
 const admin = require('firebase-admin')
 const serviceAccount = require('./serviceAccountKey.json')
 const passport = require('passport')
+const io = require('socket.io')(server)
+/*sockets*/
+const orderDeliverySocket = require('./sockets/orders_delivery_sockets')
 
 const users = require('./routes/usersRoutes')
 const categories = require('./routes/categoriesRoutes')
 const products = require('./routes/productsRoutes')
 const address = require('./routes/addressRoutes')
 const order = require('./routes/ordersRoutes')
-/*
-iniciar firebase
-*/
+
+
+/*iniciar firebase*/
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
@@ -30,9 +35,6 @@ const upload = multer ({
 // import logger from 'morgan'
 // import cors from 'cors'
 // import users from './routes/usersRoutes'
-
-const app = express()
-const server = http.createServer(app)
 
 /*Rutas*/
 const port = process.env.PORT || 3000
@@ -48,6 +50,8 @@ require('./config/passport')(passport)
 app.disable('x-powered-by')
 app.set('port', port)
 
+//LLamar al sockets
+orderDeliverySocket(io)
 /*
 llamando a las rutas
 */

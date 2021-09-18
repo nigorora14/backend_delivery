@@ -97,7 +97,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
 }
 Order.findByClientAndStatus = (id_client, status) => {
     const sql = `
-    SELECT O.ID, O.ID_CLIENT, O.ID_ADDRESS, O.ID_DELIVERY, O.STATUS, O.TIMESTAMP,
+    SELECT O.ID, O.ID_CLIENT, O.ID_ADDRESS, O.ID_DELIVERY, O.STATUS, O.TIMESTAMP, O.lat,O.lng,
 		   JSON_AGG(
 			   JSON_BUILD_OBJECT(
 			   		'id',p.id,
@@ -169,6 +169,17 @@ Order.update = (order) => {
         order.id_delivery,
         order.status,
         new Date()
+    ])
+}
+Order.updateLatLng = (order) => {
+    const sql= `
+    UPDATE ORDERS SET lat= $2, lng=$3
+     WHERE ID = $1
+    `;
+    return db.none(sql, [
+        order.id,
+        order.lat,
+        order.lng
     ])
 }
 
