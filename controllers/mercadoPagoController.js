@@ -43,11 +43,11 @@ module.exports = {
 
                 let order = payment.order
                 order.status='PAGADO'
-                const dataPago = await Order.create(order)
+                const orderData = await Order.create(order)
 
             //recorrer todos los productos agregados a la orden
                 for (const product of order.products) {
-                await OrderHasProduct.create(dataPago.id, product.id, product.quantity);
+                await OrderHasProduct.create(orderData.id, product.id, product.quantity);
                 }
 
                 return res.status(201).json(data.response)
