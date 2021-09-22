@@ -13,6 +13,7 @@ const admin = require('firebase-admin')
 const serviceAccount = require('./serviceAccountKey.json')
 const passport = require('passport')
 const io = require('socket.io')(server)
+const mercadopago = require('mercadopago')
 /*sockets*/
 const orderDeliverySocket = require('./sockets/orders_delivery_sockets')
 
@@ -21,7 +22,14 @@ const categories = require('./routes/categoriesRoutes')
 const products = require('./routes/productsRoutes')
 const address = require('./routes/addressRoutes')
 const order = require('./routes/ordersRoutes')
+const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes')
 
+/*MERCADO PAGO CONFIGURACION*/
+mercadopago.configure({
+    access_token:'TEST-1844554889341512-091715-42a964c6db346b8309e3901515f9dcee-578676229'
+})
+
+/*FINN MERCADO PAGO CONFIGURACION*/
 
 /*iniciar firebase*/
 admin.initializeApp({
@@ -32,9 +40,6 @@ const upload = multer ({
     storage: multer.memoryStorage()
 })
 
-// import logger from 'morgan'
-// import cors from 'cors'
-// import users from './routes/usersRoutes'
 
 /*Rutas*/
 const port = process.env.PORT || 3000
@@ -60,8 +65,9 @@ categories(app)
 address(app)
 order(app)
 products(app, upload)
+mercadoPagoRoutes(app)
 
-server.listen(3000,'192.168.0.100' || 'localhost', function(){
+server.listen(3000,'192.168.0.101' || 'localhost', function(){
     console.log('App '+process.pid+' iniciada...')
     console.log('App '+port+' iniciada...')
 })
