@@ -71,6 +71,25 @@ module.exports = {
             })
         }
     },
+    async updateNotificationToken(req, res, next){
+        try {
+            const body= req.body
+            console.log('INFO NOTIFICACIONES: ',body)
+            await User.updateNotificationToken(body.id, body.notification_token)
+
+            return res.status(201).json({
+                success: true,
+                message: 'El token de notificaciones se ha almacenado correctamente'
+        })
+        } catch (error) {
+            console.log(`Error: ${error}`)
+            return res.status(501),json({
+                success: false,
+                message: 'Hubo un error al tratar de actualizar el token del usuario',
+                error: error
+            })
+        }
+    },
     async registerWithImage(req, res, next){
         try {
             const user= JSON.parse(req.body.user)

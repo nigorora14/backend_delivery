@@ -106,5 +106,15 @@ User.updateToken = (id, token) => {
         token
     ])
 }
+User.updateNotificationToken = (id, token) => {
+    const sql = ` 
+    UPDATE USERS SET NOTIFICATION_TOKEN= $2
+    WHERE ID=$1 
+    `;
+    return db.none(sql, [
+        id,
+        token
+    ])
+}
 
 module.exports=User

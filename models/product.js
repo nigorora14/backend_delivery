@@ -2,13 +2,22 @@ const db = require('../config/config')
 
 const Product = {}
 
-Product.findByCategory = (id_category) => {
+Product.findByCategory = (id_category, product_name) => {
     const sql =`
     SELECT P.ID, P.NAME, P.DESCRIPTION, PRICE, IMAGE1, IMAGE2, IMAGE3, ID_CATEGORY
       FROM PRODUCTS AS P INNER JOIN CATEGORIES AS C ON P.ID_CATEGORY = C.ID
      WHERE C.ID=$1
     `;
     return db.manyOrNone(sql, id_category);
+}
+Product.findByCategoryAndProductName = (id_category) => {
+    const sql =`
+    SELECT P.ID, P.NAME, P.DESCRIPTION, PRICE, IMAGE1, IMAGE2, IMAGE3, ID_CATEGORY
+      FROM PRODUCTS AS P INNER JOIN CATEGORIES AS C ON P.ID_CATEGORY = C.ID
+     WHERE C.ID=$1
+     AND P.NAME ILIKE '$2'
+    `;
+    return db.manyOrNone(sql, [id_category, `%${product_name}%`]);
 }
 Product.create = (product) => {
     const sql=`

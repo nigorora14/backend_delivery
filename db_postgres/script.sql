@@ -16,6 +16,7 @@ create table users(
 	lastname varchar(255) not null,
 	phone varchar(20) not null,
 	image varchar(255) not null,
+	notification_token varchar(255) null,
 	password varchar(255) not null,
 	is_available boolean null,
 	session_token varchar(500) not null,

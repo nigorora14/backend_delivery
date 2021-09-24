@@ -17,6 +17,21 @@ module.exports = {
                 })
         }
     },
+    async findByCategoryAndProductName(req, res, next){
+        try {
+            const id_category= req.params.id_category;//cliente
+            const product_name= req.params.product_name;//producto
+            const data = await Product.findByCategoryAndProductName(id_category, product_name);
+            return res.status(201).json(data);
+        } catch (error) {
+            console.log(`Error: ${error}`)
+                return res.status(501).json({
+                    message: `Error al mostrar el producto por categoria`,
+                    success: false,
+                    error: error
+                })
+        }
+    },
     async create(req, res, next) {
         let product = JSON.parse(req.body.product)
         
