@@ -22,9 +22,18 @@ User.create = (user) => {
         user.email,user.name,user.lastname,user.phone,user.image,user.password,user.session_token,new Date(),new Date()
     ])
 }
+User.getAdminsNotificationTokens = () =>{
+    const sql =`
+    SELECT U.NOTIFICATION_TOKEN 
+      FROM USERS AS U INNER JOIN USER_HAS_ROLES AS UHR ON UHR.ID_USER=U.ID
+                      INNER JOIN ROLES AS R ON R.ID = UHR.ID_ROL
+     WHERE R.ID = 2
+    `;
+    return db.manyOrNone(sql);
+}
 User.findByEmail = (email) => {
     const sql= `
-    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN,
+    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN,notification_token,
     json_agg(
         json_build_object(
                 'id', r.id,
@@ -42,7 +51,7 @@ group by u.id
 }
 User.findByDeliveryMen = () => {
     const sql= `
-    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN
+    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN,notification_token
     FROM USERS AS U INNER JOIN USER_HAS_ROLES AS UHR ON UHR.ID_USER = U.ID
                     INNER JOIN ROLES AS R ON R.ID = UHR.ID_ROL
     WHERE R.ID = 3
@@ -51,7 +60,7 @@ User.findByDeliveryMen = () => {
 }
 User.findByUserId= (id) => {
     const sql= `
-    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN,
+    SELECT u.ID,EMAIL,u.NAME,LASTNAME,u.IMAGE,PHONE,PASSWORD,SESSION_TOKEN,notification_token,
     json_agg(
         json_build_object(
                 'id', r.id,
@@ -69,7 +78,7 @@ group by u.id
 }
 User.findById = (id, callback) => {
     const sql= `
-        SELECT ID, EMAIL, NAME, LASTNAME, IMAGE, PHONE, PASSWORD, SESSION_TOKEN
+        SELECT ID, EMAIL, NAME, LASTNAME, IMAGE, PHONE, PASSWORD, SESSION_TOKEN,notification_token
           FROM USERS
         WHERE ID = $1
     `
