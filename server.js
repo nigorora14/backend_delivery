@@ -67,7 +67,7 @@ order(app)
 products(app, upload)
 mercadoPagoRoutes(app)
 
-server.listen(3000,'192.168.0.101' || 'localhost', function(){
+server.listen(3000,'192.168.1.101' || 'localhost', function(){
     console.log('App '+process.pid+' iniciada...')
     console.log('App '+port+' iniciada...')
 })
