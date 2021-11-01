@@ -17,7 +17,7 @@ const databaseConfig={
     'password': '1f461193c4a63ac458e748a6c0d56f51a29f5387dcc70c316f9d253c3f2a8f6b',
     ssl: {
         rejectUnauthorized: false
-    }
+    },
     /*
     'host': '127.0.0.1',
     'port': 5432,
