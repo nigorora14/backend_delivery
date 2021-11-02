@@ -4,6 +4,7 @@
   "description": "backend delivery node.js",
   "main": "server.js",
   "scripts": {
+    "dev":"nodemon server",
     "start":"node server"
   },
   "keywords": [
