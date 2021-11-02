@@ -67,8 +67,8 @@ order(app)
 products(app, upload)
 mercadoPagoRoutes(app)
 
-server.listen(3000,'192.168.3.106' || 'localhost', function(){
-//server.listen(3000,'192.168.1.109' || 'localhost', function(){
+//server.listen(3000,'https://backend-delivery-oxa.herokuapp.com', function(){
+server.listen(port,'192.168.3.106'||'localhost', function(){
     console.log('App '+process.pid+' iniciada...')
     console.log('Port '+port+' iniciada...')
 })
