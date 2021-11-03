@@ -74,7 +74,7 @@ server.listen(port,'0.0.0.0', function(){
 })
 
 app.get('/',(req, res) => {
-    res.send('ruta raiz del backend')
+    res.send('ruta raiz del backend, solo se vera con un TOKEN.')
 })
 //error handler
 app.use((err,req, res, next) => {
