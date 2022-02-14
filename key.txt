@@ -1,0 +1,8 @@
+descargar android
+https://developer.android.com/studio/archive?hl=es-419
+
+SDK flutter
+2.2.3 f4abaa0 1/7/2021
+
+version
+Android Studio 4.2.2 del 30 de junio 2021
