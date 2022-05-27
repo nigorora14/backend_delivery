@@ -9,5 +9,34 @@ version
 Android Studio 4.2.2 del 30 de junio 2021
 ***************************************************************************
 
+ENCONTRAR NOMBRE DEL PROYECTO EN:
+/frontend_delivery/android/app/src/main/AndroidManifest.xml
+
+FIREBASE
+si estas en windows buscar codigo del SHA
+abrir git cmd escribir 
+cd C:\program files\Android\Android Studio\jre\bin
+keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+clave vacio dar enter o escribir android
+luego tendremos el certificado SHA1 y lo pegamos en firebase
+
+entrar con cuenta de google a firebase
+descargar el archivo google-services.json si no esta con ese nombre al momento de descargarlo cambiar de nombre
+
+pegarlo dentro del frontEnd en /frontend_delivery/android/app dentro de la carpeta app
+
+agregar el sdk de firebase
+copiar la dependencia de la web de firebase
+y agregarlo en /frontend_delivery/android/gradle en el archivo build.gradle
+
+ir al archivo build.gradle ruta: /frontend_delivery/android/app y buscar el archivo y actualizar en minSdkVersion a 21 
+ademas de agregar el plugin cerca a la linea 24 al 27
+
+por ultimo vamos al terminal y ejecutamos flutter clean siempre ubicarse en la ruta del proyecto
+verificar la regla del storage de firebase que solo este allow read, write;
+
 Clave API Facturda - Google Consola
 AIzaSyBeT4ZvVXN6-ME_yU4I3fNDwG1_N7thEsk
+
+entrar con cuenta de google a firebase
+descargar el archivo google-services.json
