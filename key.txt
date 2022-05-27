@@ -2,7 +2,12 @@ descargar android
 https://developer.android.com/studio/archive?hl=es-419
 
 SDK flutter
+https://docs.flutter.dev/development/tools/sdk/releases?tab=macos
 2.2.3 f4abaa0 1/7/2021
 
-version *
+version
 Android Studio 4.2.2 del 30 de junio 2021
+***************************************************************************
+
+Clave API Facturda - Google Consola
+AIzaSyBeT4ZvVXN6-ME_yU4I3fNDwG1_N7thEsk
