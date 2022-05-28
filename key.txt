@@ -40,3 +40,17 @@ AIzaSyBeT4ZvVXN6-ME_yU4I3fNDwG1_N7thEsk
 
 entrar con cuenta de google a firebase
 descargar el archivo google-services.json
+
+*******AUN NO HAY SOLUCION PARA QUE CORRA EN IOS*************
+Entrar a la ruta https://developer.apple.com/download/all/
+Descargar “Command Line Tools” segun la version de tu Xcode
+Abrir terminal
+brew install cocoapods
+
+Modificar con “vim ~/.bash_profile” agregar 
+
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+Ubicarse en el proyecto y ejecutar desde la terminal flutter run
