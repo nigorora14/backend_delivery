@@ -41,11 +41,10 @@ AIzaSyBeT4ZvVXN6-ME_yU4I3fNDwG1_N7thEsk
 entrar con cuenta de google a firebase
 descargar el archivo google-services.json
 
-*******AUN NO HAY SOLUCION PARA QUE CORRA EN IOS*************
+*******PARA QUE CORRA EN IOS*************
 Entrar a la ruta https://developer.apple.com/download/all/
 Descargar “Command Line Tools” segun la version de tu Xcode
 Abrir terminal
-brew install cocoapods
 
 Modificar con “vim ~/.bash_profile” agregar 
 
@@ -53,8 +52,34 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-Ubicarse en el proyecto y ejecutar desde la terminal flutter run
+cerrar el archivo
 
+ubicarse en la carpeta de IOS del proyecto y ejecutar en la terminal
+pod install
+Ejecutar flutter build iOS en el proyecto raíz principal a través de la terminal.
+probar si no funciona continuar de ser necesario cambiar la version
+Vaya a Macintosh HD -> Usuario -> (Su usuario).
+
+Buscar .zshrc
+
+Ábralo con cualquier editor (recomiendo el código VS) | abrirlo con "vim .zshrc"
+
+agregar 
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+cerrar el archivo con esc + :wq!
+
+
+Abra su proyecto flutter y elimine manualmente la carpeta Pods, Podfile, Podfile.lock. (copia de seguridad de todos los podfiles)
+
+Reinicie su Mac y ejecute su aplicación flutter(correr el proyecto)
+
+Correr pod install | esto se hara de manera automatica verificarlo en la carpeta de ios
+
+Creará automáticamente podfile y su nueva configuración en codificación UTF - 8
+
+Disfruta y relájate. ¡Te cubro las espaldas!
 ********************************************************************
 levantar el backend con nose server.js
 si no levanta el backend ejecutar node install
