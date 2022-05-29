@@ -54,3 +54,8 @@ export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 Ubicarse en el proyecto y ejecutar desde la terminal flutter run
+
+********************************************************************
+levantar el backend con nose server.js
+si no levanta el backend ejecutar node install
+luego ejecutar node server.js
