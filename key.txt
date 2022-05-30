@@ -13,15 +13,27 @@ ENCONTRAR NOMBRE DEL PROYECTO EN:
 /frontend_delivery/android/app/src/main/AndroidManifest.xml
 
 FIREBASE
-si estas en windows buscar codigo del SHA
+codigo del SHA1
+si estas en windows  
 abrir git cmd escribir 
 cd C:\program files\Android\Android Studio\jre\bin
 keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
 clave vacio dar enter o escribir android
+
+para Mac
+se obtiene ejecutando en la terminal de androidStudio ubicandose en la carpeta de android 
+escribir en la terminal gradlew signingReport correrlo con cmd + enter
+
+Alias: AndroidDebugKey
+MD5: 9C:12:15:31:7E:03:0F:BC:68:C8:87:A2:57:DD:47:98
+SHA1: A4:D2:A7:77:E7:2F:44:DC:50:B4:4B:71:AB:75:13:A2:1A:F5:C0:E3
+SHA-256: 0E:FF:EC:A8:DF:43:80:3F:75:D4:F0:CD:4D:F0:42:2F:75:4B:BE:8D:19:E9:32:F9:F8:61:79:9C:27:A0:F2:21
 luego tendremos el certificado SHA1 y lo pegamos en firebase
 
 entrar con cuenta de google a firebase
 descargar el archivo google-services.json si no esta con ese nombre al momento de descargarlo cambiar de nombre
+/*tener en cuenta esta url para produccion*/
+https://es.stackoverflow.com/questions/153203/c%C3%B3mo-obtener-sha-1-para-producci%C3%B3n-para-usar-en-firebase
 
 pegarlo dentro del frontEnd en /frontend_delivery/android/app dentro de la carpeta app
 
@@ -81,6 +93,7 @@ agregar
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
 cerrar el archivo con esc + :wq!
 
 
@@ -93,6 +106,11 @@ Correr pod install | esto se hara de manera automatica verificarlo en la carpeta
 Creará automáticamente podfile y su nueva configuración en codificación UTF - 8
 
 Disfruta y relájate. ¡Te cubro las espaldas!
+********************************************************************
+para usar storage en firebase
+buscar el archivo cloud_storage.js y agregar y /o actualizar donde esta contenido la url "gs://laser-halia.appspot.com/"
+
+
 ********************************************************************
 levantar el backend con nose server.js
 si no levanta el backend ejecutar node install

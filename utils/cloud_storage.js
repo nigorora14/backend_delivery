@@ -11,7 +11,7 @@ const storage = new Storage({
     keyFilename: './serviceAccountKey.json'
 });
 
-const bucket = storage.bucket("gs://delivery-b65a2.appspot.com/");
+const bucket = storage.bucket("gs://laser-halia.appspot.com/");
 
 /**
  * Subir el archivo a Firebase Storage
