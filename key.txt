@@ -38,6 +38,19 @@ verificar la regla del storage de firebase que solo este allow read, write;
 Clave API Facturda - Google Consola
 AIzaSyBeT4ZvVXN6-ME_yU4I3fNDwG1_N7thEsk
 
+nuevo api google usar la cuenta de nilton.gonzano@gmail.com | 14@qweszxC
+clave de api: AIzaSyDp39HC2q6iyTtGuD4hD_FXMYbAeSHh8OI
+
+esto se ingresa para android en AndroidManifest
+<meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDp39HC2q6iyTtGuD4hD_FXMYbAeSHh8OI"/>
+
+para ios en AppDelegate
+GMSServices.provideAPIKey("AIzaSyDp39HC2q6iyTtGuD4hD_FXMYbAeSHh8OI")
+
+para que haga los trazos en el mapa esto se hace siempre y cuando no funcione la primera api creada
+API: AIzaSyAGrb-T3Yqn9-UFpjrFx3dQ4eASEWp2mV8
+
 entrar con cuenta de google a firebase
 descargar el archivo google-services.json
 
@@ -84,3 +97,4 @@ Disfruta y relájate. ¡Te cubro las espaldas!
 levantar el backend con nose server.js
 si no levanta el backend ejecutar node install
 luego ejecutar node server.js
+
