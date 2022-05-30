@@ -47,7 +47,7 @@ ademas de agregar el plugin cerca a la linea 24 al 27
 por ultimo vamos al terminal y ejecutamos flutter clean siempre ubicarse en la ruta del proyecto
 verificar la regla del storage de firebase que solo este allow read, write;
 
-Clave API Facturda - Google Consola
+Clave API Facturada - Google Consola
 AIzaSyBeT4ZvVXN6-ME_yU4I3fNDwG1_N7thEsk
 
 nuevo api google usar la cuenta de nilton.gonzano@gmail.com | 14@qweszxC
@@ -58,6 +58,10 @@ esto se ingresa para android en AndroidManifest
            android:value="AIzaSyDp39HC2q6iyTtGuD4hD_FXMYbAeSHh8OI"/>
 
 para ios en AppDelegate
+agregar el import
+
+import GoogleMaps
+
 GMSServices.provideAPIKey("AIzaSyDp39HC2q6iyTtGuD4hD_FXMYbAeSHh8OI")
 
 para que haga los trazos en el mapa esto se hace siempre y cuando no funcione la primera api creada
@@ -99,7 +103,7 @@ cerrar el archivo con esc + :wq!
 
 Abra su proyecto flutter y elimine manualmente la carpeta Pods, Podfile, Podfile.lock. (copia de seguridad de todos los podfiles)
 
-Reinicie su Mac y ejecute su aplicación flutter(correr el proyecto)
+Reinicie su Mac y ejecute su aplicación flutter(correr el proyecto ios) ubicarse en la ruta del proyecto ejecutar flutter build ios
 
 Correr pod install | esto se hara de manera automatica verificarlo en la carpeta de ios
 
