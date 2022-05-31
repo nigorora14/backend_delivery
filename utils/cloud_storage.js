@@ -7,7 +7,7 @@ const uuid = uuidv4();
 
 
 const storage = new Storage({
-    projectId: "delivery-b65a2",
+    projectId: "laser-halia",
     keyFilename: './serviceAccountKey.json'
 });
 
